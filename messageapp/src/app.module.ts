@@ -5,9 +5,14 @@ import { AppService } from './app.service';
 import { MensajesController } from './mensajes/mensajes.controller';
 import { MensajesService } from './mensajes/mensajes.service';
 import { Mensaje } from './mensajes/entities/mensaje.entity';
+import { HttpModule } from '@nestjs/axios';
+import { TestapisController } from './testapis/testapis.controller';
+import { TestapisService } from './testapis/testapis.service';
+
 
 @Module({
   imports: [
+    HttpModule,
     TypeOrmModule.forRoot({
       type: 'mssql',
       host: 'localhost',
@@ -20,7 +25,7 @@ import { Mensaje } from './mensajes/entities/mensaje.entity';
     }),
     TypeOrmModule.forFeature([Mensaje])
   ],
-  controllers: [AppController, MensajesController],
-  providers: [AppService, MensajesService],
+  controllers: [AppController, MensajesController, TestapisController],
+  providers: [AppService, MensajesService, TestapisService],
 })
 export class AppModule {}
